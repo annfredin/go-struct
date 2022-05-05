@@ -54,7 +54,7 @@ func main() {
 		Name string 
 		Age int
 		}{ Name: "AAAA", Age: 30}
-fmt.Println(anonStr)
+      fmt.Println(anonStr)
 
 	//JSON============
 	fmt.Printf("\nJSON\n" )
@@ -80,4 +80,77 @@ fmt.Println(anonStr)
 	
 	// omitempty -> if the value is empty(default value), then will not be exported.
 	// - => used to totally ignore export fn, sensitive information not required to export
+
+
+	//FUNC Test function
+	funTest()
+
+	interfaceTest()
+}
+
+func (e Employee) getEmployeeName() string{
+	return e.Name
+}
+
+//pointer receiver
+func (e *Employee) getAge() int{
+	return e.Age
+}
+func (e *Employee) setAge(v int) {
+	e.Age = v
+}
+func funTest(){
+	e := Employee{"Kumar", 20,1000}
+	r := e.getEmployeeName()
+
+	e.setAge(90)
+	age := e.getAge()
+	fmt.Println("\n", r, age)
+}
+
+
+
+type animal interface {
+	breathe()
+	walk()
+}
+type lion struct {
+	age int
+}
+type dog struct {
+	age int
+}
+
+func (l lion) breathe() {
+   fmt.Println("Lion breathes")
+}
+
+func (l lion) walk() {
+   fmt.Println("Lion walk")
+}
+
+func (l dog) breathe() {
+   fmt.Println("Dog breathes")
+}
+func (l dog) walk() {
+	fmt.Println("Dog walk")
+ }
+
+
+ func callBreathe(a animal) {
+	a.breathe()
+}
+
+func callWalk(a animal) {
+	a.breathe()
+}
+func interfaceTest(){
+
+	l := lion{age: 10}
+	callBreathe(l)
+	callWalk(l)
+
+	d := dog{age: 5}
+	callBreathe(d)
+	callWalk(d)
 }
