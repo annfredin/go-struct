@@ -1,1 +1,3 @@
 ## STRUCT - GOLANG:
+
+Struct implemnentaion demo...
